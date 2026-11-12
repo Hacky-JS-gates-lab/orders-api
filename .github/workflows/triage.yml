@@ -1,0 +1,15 @@
+# Deliberately weak workflow for merge-gate-lab.
+# The guard limits it to org members and the owner so strangers cannot trigger it.
+name: triage
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  label:
+    if: contains(fromJSON('["OWNER","MEMBER"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parse command
+        run: |
+          echo "Comment: ${{ github.event.comment.body }}"

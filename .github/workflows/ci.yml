@@ -1,0 +1,24 @@
+# Deliberately weak workflow for merge-gate-lab. Every problem here is a lesson.
+# The `if:` guard on each job keeps PRs from forks out, so a public lab repo cannot
+# be attacked by strangers. Remove the guard and this becomes a real "pwn request".
+name: ci
+on:
+  pull_request_target:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+      - name: Announce
+        run: echo "Tested ${{ github.event.pull_request.title }}"

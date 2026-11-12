@@ -1,0 +1,11 @@
+const { test } = require('node:test');
+const assert = require('node:assert');
+const app = require('../src/server.js');
+
+test('GET /orders/1 returns the order', async () => {
+  const server = app.listen(0);
+  const { port } = server.address();
+  const res = await fetch(`http://127.0.0.1:${port}/orders/1`);
+  assert.strictEqual(res.status, 200);
+  server.close();
+});
