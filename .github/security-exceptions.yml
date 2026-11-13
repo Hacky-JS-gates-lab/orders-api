@@ -1,0 +1,7 @@
+exceptions:
+  - id: EXC-001
+    rule: shell-command-from-request
+    path: src/server.js
+    reason: Host comes from a fixed list in the ops dashboard. Fix tracked in OPS-142.
+    owner: "@Hacky-JS-gates-lab/security"
+    expires: 2026-12-13
