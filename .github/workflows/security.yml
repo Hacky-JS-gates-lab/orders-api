@@ -11,6 +11,9 @@ permissions:
 
 jobs:
   security:
-    uses: Hacky-JS-gates-lab/security-workflows/.github/workflows/security-gate.yml@e713f67939a45f892c443e603ce04f19cc6bf750 # v2.2.0
+    permissions:
+      contents: read
+      security-events: write # gate v2.3.0+: zizmor findings to code scanning
+    uses: Hacky-JS-gates-lab/security-workflows/.github/workflows/security-gate.yml@117d02beff32eea73e10d8489f60992366e3d228 # v2.3.0
     with:
       mode: block
