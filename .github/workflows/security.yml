@@ -1,0 +1,16 @@
+# Calls the org's central security gate. Owned by the security team (CODEOWNERS).
+# Don't edit by hand: the security team bumps it with a PR per repo.
+name: security
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    uses: Hacky-JS-gates-lab/security-workflows/.github/workflows/security-gate.yml@add21757ce25e6be4ef0229179faa0d15b6ca301 # v1.0.0
+    with:
+      mode: block
