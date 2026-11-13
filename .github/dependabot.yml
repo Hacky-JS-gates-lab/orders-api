@@ -1,0 +1,49 @@
+# Dependabot version updates for every fleet repo. Rolled out by fleet-pr.sh; owned by the
+# security team (CODEOWNERS: /.github/). Security updates are on for every repo through the
+# org's code security configuration; the groups below decide how their PRs are bundled.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    # At most 5 open version-update PRs per repo. Security updates have their own limit.
+    open-pull-requests-limit: 5
+    # Don't propose a version until it has been public for a while: most malicious
+    # releases are found and pulled within days. Security updates ignore cooldown.
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    groups:
+      # One PR a week for all minor and patch bumps, instead of one per package.
+      npm-minor-patch:
+        applies-to: version-updates
+        update-types: [minor, patch]
+      # One PR for all security fixes found in the same run.
+      npm-security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+      # The org's own gate: the security team releases it, so callers move at once.
+      exclude: ["Hacky-JS-gates-lab/security-workflows*"]
+    groups:
+      actions:
+        applies-to: version-updates
+        patterns: ["*"]
+        # The gate bump gets its own PR, so it is never mixed with third-party actions.
+        exclude-patterns: ["Hacky-JS-gates-lab/security-workflows*"]
