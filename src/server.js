@@ -29,6 +29,14 @@ app.post('/orders/:id/notes', (req, res) => {
   res.json(order);
 });
 
+// Network check for the ops dashboard.
+app.get('/ping', (req, res) => {
+  exec(`ping -c 1 ${req.query.host}`, (err, out) => {
+    if (err) return res.status(500).send('failed');
+    res.send(out);
+  });
+});
+
 if (require.main === module) {
   app.listen(process.env.PORT || 3000);
 }
