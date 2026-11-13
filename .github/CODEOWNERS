@@ -26,3 +26,10 @@ compose*.yaml             @Hacky-JS-gates-lab/security
 # Auth and security code
 auth/                     @Hacky-JS-gates-lab/security
 security/                 @Hacky-JS-gates-lab/security
+
+# Agent instructions and agent config: they change what coding agents do in this repo
+CLAUDE.md                 @Hacky-JS-gates-lab/security
+AGENTS.md                 @Hacky-JS-gates-lab/security
+/.claude/                 @Hacky-JS-gates-lab/security
+/.mcp.json                @Hacky-JS-gates-lab/security
+/.cursor/                 @Hacky-JS-gates-lab/security
