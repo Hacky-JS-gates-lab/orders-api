@@ -1,0 +1,28 @@
+# Files that decide what runs in CI, what gets installed and who has to review.
+# A change to any of them needs a review from the security team.
+# The last matching line wins. Keep these lines at the END of the file, below any
+# per-team ownership, or a broader line further down will take them away.
+
+# CI, Dependabot, and this file itself
+/.github/                 @Hacky-JS-gates-lab/security
+/CODEOWNERS               @Hacky-JS-gates-lab/security
+/docs/CODEOWNERS          @Hacky-JS-gates-lab/security
+
+# Dependencies: manifests, lockfiles and install config
+package.json              @Hacky-JS-gates-lab/security
+package-lock.json         @Hacky-JS-gates-lab/security
+npm-shrinkwrap.json       @Hacky-JS-gates-lab/security
+yarn.lock                 @Hacky-JS-gates-lab/security
+pnpm-lock.yaml            @Hacky-JS-gates-lab/security
+.npmrc                    @Hacky-JS-gates-lab/security
+
+# Containers and infrastructure as code
+Dockerfile*               @Hacky-JS-gates-lab/security
+docker-compose*.yml       @Hacky-JS-gates-lab/security
+compose*.yaml             @Hacky-JS-gates-lab/security
+*.tf                      @Hacky-JS-gates-lab/security
+*.tfvars                  @Hacky-JS-gates-lab/security
+
+# Auth and security code
+auth/                     @Hacky-JS-gates-lab/security
+security/                 @Hacky-JS-gates-lab/security
