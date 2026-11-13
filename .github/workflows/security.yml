@@ -11,6 +11,6 @@ permissions:
 
 jobs:
   security:
-    uses: Hacky-JS-gates-lab/security-workflows/.github/workflows/security-gate.yml@f88f41c7d21d50201be56d54485d8b0bdd3c02bf # v2.0.1
+    uses: Hacky-JS-gates-lab/security-workflows/.github/workflows/security-gate.yml@ffe55de532d0b56b6ab0a2dd021e3ee4b26da769 # v2.1.0
     with:
       mode: block
