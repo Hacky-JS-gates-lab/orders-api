@@ -13,12 +13,11 @@ updates:
     # At most 5 open version-update PRs per repo. Security updates have their own limit.
     open-pull-requests-limit: 5
     # Don't propose a version until it has been public for a while: most malicious
-    # releases are found and pulled within days. Security updates ignore cooldown.
+    # releases are found and pulled within days. 7 days matches the gate's new-package
+    # check (lesson 4.3), so version updates never fail it. Security updates ignore cooldown.
     cooldown:
       default-days: 7
       semver-major-days: 30
-      semver-minor-days: 7
-      semver-patch-days: 3
     groups:
       # One PR a week for all minor and patch bumps, instead of one per package.
       npm-minor-patch:
